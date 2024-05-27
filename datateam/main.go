@@ -11,7 +11,7 @@ func main() {
 	topic := "HVSE"
 	consumer, err := kafka.NewConsumer(&kafka.ConfigMap{
 		"bootstrap.servers": "localhost:29092",
-		"group.id":          "foo_data",
+		"group.id":          "foo",
 		"auto.offset.reset": "smallest",
 	})
 
@@ -29,7 +29,7 @@ func main() {
 		ev := consumer.Poll(100)
 		switch e := ev.(type) {
 		case *kafka.Message:
-			fmt.Printf("processing order: %+s\n", string(e.Value))
+			fmt.Printf("data team reading order: %+s\n", string(e.Value))
 
 		case *kafka.Error:
 			fmt.Printf("%+s\n", e)
